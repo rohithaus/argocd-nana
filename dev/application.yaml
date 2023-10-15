@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myapp-argo-application
+  name: myapp-argo-application001
   namespace: argocd
 spec:
   project: default
@@ -17,7 +17,12 @@ spec:
     - CreateNamespace=true 
     automated:
       selfHeal: true 
-      prune: true 
+      prune: true
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas     
 
 
   
