@@ -1,0 +1,101 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: "2023-10-15T23:47:29Z"
+  generation: 16
+  name: new-app
+  namespace: argocd
+  resourceVersion: "8269"
+  uid: fff58d2e-90e5-403c-bec5-749934f3f4bd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: qa
+    repoURL: https://github.com/rohithaus/argocd-nana.git
+    targetRevision: HEAD
+status:
+  controllerNamespace: argocd
+  health:
+    status: Healthy
+  history:
+  - deployStartedAt: "2023-10-15T23:47:49Z"
+    deployedAt: "2023-10-15T23:47:49Z"
+    id: 0
+    revision: 8219dae6cee4d318ae929e3657c81ee93bc75542
+    source:
+      path: qa
+      repoURL: https://github.com/rohithaus/argocd-nana.git
+      targetRevision: HEAD
+  operationState:
+    finishedAt: "2023-10-15T23:47:49Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        username: admin
+      retry: {}
+      sync:
+        revision: 8219dae6cee4d318ae929e3657c81ee93bc75542
+        syncStrategy:
+          hook: {}
+    phase: Succeeded
+    startedAt: "2023-10-15T23:47:49Z"
+    syncResult:
+      resources:
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/guestbook-ui-app created
+        name: guestbook-ui-app
+        namespace: default
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/guestbook-ui-app created
+        name: guestbook-ui-app
+        namespace: default
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      revision: 8219dae6cee4d318ae929e3657c81ee93bc75542
+      source:
+        path: qa
+        repoURL: https://github.com/rohithaus/argocd-nana.git
+        targetRevision: HEAD
+  reconciledAt: "2023-10-16T01:03:01Z"
+  resources:
+  - health:
+      status: Healthy
+    kind: Service
+    name: guestbook-ui-app
+    namespace: default
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: guestbook-ui-app
+    namespace: default
+    status: Synced
+    version: v1
+  sourceType: Directory
+  summary:
+    images:
+    - gcr.io/heptio-images/ks-guestbook-demo:0.2
+  sync:
+    comparedTo:
+      destination:
+        namespace: default
+        server: https://kubernetes.default.svc
+      source:
+        path: qa
+        repoURL: https://github.com/rohithaus/argocd-nana.git
+        targetRevision: HEAD
+    revision: 8219dae6cee4d318ae929e3657c81ee93bc75542
+    status: Synced
